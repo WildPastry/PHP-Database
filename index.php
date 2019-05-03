@@ -13,32 +13,49 @@
 
   <div class="container-fluid">
 
-<!-- PHP -->
-<?php
-require ("connection.php");
+    <!-- PHP -->
 
-$sql = "SELECT * FROM movies"; //QUERY DB
-// $sql = "SELECT * FROM movies WHERE Rating='7'";
-echo "<ul class='myList'>"; //UL
+    <?php
+   
+// require ("connection.php");
 
-try {
-  $rows = $conn->query($sql);
-  foreach($rows as $row){
-    echo "<li>" . $row["Id"] . "&nbsp;" . $row["Title"]. "&nbsp;" .$row["Year"]. "&nbsp;" .$row["Genre"]. "&nbsp;". "&nbsp;" .$row["Rating"] . "<li>"; //LOOP DB
-  }
-} catch (PDOException $e) {
-  echo "database query failed..." . $e->getMessage(); //OUTPUT ERROR
-}
+// try {
+//   $conn = new PDO($dsn, $username, $password); //CONNECT
+//   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //ERRORS
+//   echo "connected" . "<br>" .  "<br>";
+  
+// } catch (PDOException $e) {
+//     echo "error connectiong..." . $e->getMessage(); //OUTPUT ERROR
+// }
 
-echo "</ul>"; //UL
-$conn = null; //CLOSE CONNECTION
+// $sql = "SELECT * FROM movies"; //QUERY DB
+// // $sql = "SELECT * FROM movies WHERE Rating='7'";
+// echo "<ul class='myList'>"; //UL
+
+// try {
+//   $rows = $conn->query($sql);
+//   foreach($rows as $row){
+//     echo "<li>" . $row["Id"] . "&nbsp;" . $row["Title"]. "&nbsp;" .$row["Year"]. "&nbsp;" .$row["Genre"]. "&nbsp;". "&nbsp;" .$row["Rating"] . "<li>"; //LOOP DB
+//   }
+// } catch (PDOException $e) {
+//   echo "database query failed..." . $e->getMessage(); //OUTPUT ERROR
+// }
+
+// echo "</ul>"; //UL
+// $conn = null; //CLOSE CONNECTION
+
 ?>
 
-<!-- FORM -->
-    <form method="get action=" add.php>
+    <!-- FORM -->
+    <form method="POST" action="add.php">
       <div class="form-group">
-        <label for="movies-id">Title</label>
+        <label for="movies-id">ID</label>
         <input type="text" class="form-control" name="movies-id" id="movies-id" aria-describedby="emailHelp"
+          placeholder="ID">
+      </div>
+      <div class="form-group">
+        <label for="movies-title">Title</label>
+        <input type="text" class="form-control" name="movies-title" id="movies-title" aria-describedby="emailHelp"
           placeholder="Title">
       </div>
       <div class="form-group">
@@ -53,7 +70,7 @@ $conn = null; //CLOSE CONNECTION
         <label for="movies-rating">Rating</label>
         <input type="text" class="form-control" name="movies-rating" id="movies-rating" placeholder="Rating">
       </div>
-      <div type="submit" value="Add Movie" class="btn btn-warning">Add Movie</div>
+      <input type="submit" value="Add Movie" class="btn btn-warning"/>
     </form>
   </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
